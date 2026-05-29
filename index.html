@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>唐文青 · 星辰 | AI应用工程师</title>
+    <meta name="description" content="唐文青（星辰）的个人主页 — AI应用开发工程师，专注AI应用落地" />
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --muted: #64748b;
+            --accent: #6366f1;
+            --accent-soft: #eef2ff;
+            --border: #e2e8f0;
+            --radius: 12px;
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        /* ===== Layout ===== */
+        .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+        /* ===== Header ===== */
+        header {
+            padding: 64px 0 48px;
+            text-align: center;
+        }
+        .avatar {
+            width: 96px; height: 96px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6366f1, #a78bfa);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 36px;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(99,102,241,0.25);
+        }
+        header h1 {
+            font-size: 32px; font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        header h1 .alias { color: var(--muted); font-weight: 400; }
+        header .tagline {
+            margin-top: 8px;
+            font-size: 18px;
+            color: var(--muted);
+        }
+        header .badge-group {
+            margin-top: 16px;
+            display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 14px;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 500;
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        /* ===== About ===== */
+        .about {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 36px 32px;
+            margin-bottom: 32px;
+        }
+        .about p { font-size: 15px; margin-bottom: 12px; }
+        .about p:last-child { margin-bottom: 0; }
+        .about .highlight {
+            background: var(--accent-soft);
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            color: var(--accent);
+            border-left: 3px solid var(--accent);
+            margin-top: 16px;
+        }
+
+        /* ===== Section Title ===== */
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1; height: 1px;
+            background: var(--border);
+        }
+
+        /* ===== Projects ===== */
+        .projects { margin-bottom: 40px; }
+        .project-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 28px 32px;
+            margin-bottom: 16px;
+            transition: box-shadow .2s, transform .2s;
+        }
+        .project-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+            transform: translateY(-2px);
+        }
+        .project-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .project-card .meta {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .project-card p {
+            font-size: 14px;
+            color: #334155;
+        }
+        .project-card .tags {
+            display: flex; gap: 6px; flex-wrap: wrap;
+            margin-top: 12px;
+        }
+        .project-card .tags span {
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            background: #f1f5f9;
+            color: var(--muted);
+        }
+
+        /* ===== Skills ===== */
+        .skills { margin-bottom: 40px; }
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 12px;
+        }
+        .skill-item {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 16px 20px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .skill-item .emoji { display: block; font-size: 24px; margin-bottom: 6px; }
+
+        /* ===== Contact ===== */
+        .contact {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 32px;
+            text-align: center;
+            margin-bottom: 48px;
+        }
+        .contact p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+        .contact-links {
+            display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+        }
+        .contact-links a {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: background .2s;
+        }
+        .contact-links .primary {
+            background: var(--accent);
+            color: #fff;
+        }
+        .contact-links .primary:hover { background: #4f46e5; }
+        .contact-links .secondary {
+            background: var(--border);
+            color: var(--text);
+        }
+        .contact-links .secondary:hover { background: #cbd5e1; }
+
+        /* ===== Footer ===== */
+        footer {
+            text-align: center;
+            padding: 24px 0 48px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 600px) {
+            header { padding: 40px 0 32px; }
+            header h1 { font-size: 26px; }
+            .about, .project-card, .contact { padding: 24px 20px; }
+            .skill-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="avatar">🌟</div>
+    <h1>唐文青 <span class="alias">· 星辰</span></h1>
+    <p class="tagline">AI应用工程师 · 从零到一落地AI产品</p>
+    <div class="badge-group">
+        <span class="badge">🐍 Python</span>
+        <span class="badge">⚡ FastAPI</span>
+        <span class="badge">🧠 RAGFlow</span>
+        <span class="badge">🤖 AI API</span>
+        <span class="badge">⚛️ React</span>
+    </div>
+</header>
+
+<main class="container">
+
+    <!-- About -->
+    <section class="about">
+        <p>
+            你好，我是 <strong>唐文青</strong>（你也可以叫我 <strong>星辰</strong> 🌟）。
+            我是刚转行进入AI领域的应用工程师，目前全职探索AI落地的各种可能性。
+        </p>
+        <p>
+            我擅长把<b>数据和知识变成可用的产品</b>——从搭建RAG知识库、对接大模型API，
+            到完整的全栈应用都有实战经验。做过内容审核，也做过AI系统开发，
+            我的优势是理解"真实需求长什么样"。
+        </p>
+        <div class="highlight">
+            📍 现居杭州 · 西湖区 &nbsp;|&nbsp; 🎯 短期目标：多做小项目，积累作品集，接项目实现独立
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section class="projects">
+        <h2 class="section-title">📦 项目</h2>
+
+        <div class="project-card">
+            <h3>KnowledgeForge · AI印刷品自动化系统</h3>
+            <div class="meta">Python · FastAPI · Next.js · RAGFlow · 2026-05</div>
+            <p>
+                一套AI驱动的印刷品生成后台系统，实现"用户上传素材 → AI生成文本 →
+                人工审核 → 智能排版 → 印刷级PDF"全流程自动化。
+                涉及富文本编辑器集成、印刷级PDF引擎（CMYK/300DPI/出血线）等技术难点评估与方案设计。
+            </p>
+            <div class="tags">
+                <span>FastAPI</span>
+                <span>Next.js</span>
+                <span>AI文本生成</span>
+                <span>通义千问</span>
+                <span>DeepSeek</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>三方典 · 中医×AI健康内容品牌</h3>
+            <div class="meta">品牌策略 · 内容运营 · 知识库搭建 · 2026-05</div>
+            <p>
+                基于47.8GB中医典籍资料库，打造"体质调理 + 食疗推荐 + 舌诊分析"三个方向的健康IP品牌。
+                已完成账号定位、四平台适配简介、对标竞品分析、首批选题策划。
+                Slogan：<strong>"翻典说话，三方有据"</strong>。
+            </p>
+            <div class="tags">
+                <span>品牌定位</span>
+                <span>内容策略</span>
+                <span>中医知识库</span>
+                <span>小红书</span>
+                <span>视频号</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>医学AI三助手 · RAG知识库系统</h3>
+            <div class="meta">Python · RAGFlow · PyMuPDF · TEI · 2026-05</div>
+            <p>
+                从47.8GB医学书籍、2000+中医古籍中提取数据，搭建4个独立知识库
+                （体质调理 / 食疗推荐 / 舌诊分析 / 通用医学）。
+                基于RAGFlow + 本地TEI嵌入服务，实现私有化AI检索问答。
+            </p>
+            <div class="tags">
+                <span>RAGFlow</span>
+                <span>TEI</span>
+                <span>知识库</span>
+                <span>NLP</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>数据解读 · 百家号/公众号内容号</h3>
+            <div class="meta">内容创作 · 数据可视化 · 2026-05</div>
+            <p>
+                经营百家号和公众号"成长中的数据解读爱好者七七"，用数据和逻辑解读行业趋势。
+                代表作品：《AI人才缺口500万，这些岗位薪资涨了3倍》在全网获得可观阅读量。
+            </p>
+            <div class="tags">
+                <span>百家号</span>
+                <span>公众号</span>
+                <span>数据分析</span>
+                <span>内容创作</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section class="skills">
+        <h2 class="section-title">🔧 技能</h2>
+        <div class="skill-grid">
+            <div class="skill-item">
+                <span class="emoji">🐍</span>
+                Python / FastAPI
+            </div>
+            <div class="skill-item">
+                <span class="emoji">⚛️</span>
+                React / Next.js
+            </div>
+            <div class="skill-item">
+                <span class="emoji">🧠</span>
+                RAGFlow / RAG
+            </div>
+            <div class="skill-item">
+                <span class="emoji">🤖</span>
+                通义千问 / DeepSeek API
+            </div>
+            <div class="skill-item">
+                <span class="emoji">🗄️</span>
+                SQL / PostgreSQL
+            </div>
+            <div class="skill-item">
+                <span class="emoji">📦</span>
+                Docker / Git
+            </div>
+            <div class="skill-item">
+                <span class="emoji">📊</span>
+                数据分析 / 数据解读
+            </div>
+            <div class="skill-item">
+                <span class="emoji">📝</span>
+                内容策略 / 品牌定位
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact">
+        <p>有项目想聊？或是想交流AI应用落地？欢迎联系我 👋</p>
+        <div class="contact-links">
+            <a href="https://github.com/tangwenqing123" target="_blank" class="secondary" rel="noopener">
+                🐙 GitHub
+            </a>
+            <a href="https://baijiahao.baidu.com/u?app_id=1741597830412845" target="_blank" class="secondary" rel="noopener">
+                📱 百家号
+            </a>
+            <a href="mailto:tangwenqing123@gmail.com" class="primary">
+                📧 联系我
+            </a>
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    © 2026 唐文青 · 星辰 &nbsp;·&nbsp; Made with 🌟
+</footer>
+
+</body>
+</html>
