@@ -1,0 +1,23 @@
+# === Safety: data & backups ===
+*.db
+*.sqlite
+*.sqlite3
+data/
+backups/
+
+# === Secrets ===
+.env
+.env.*
+*.key
+*.pem
+
+# === OS garbage ===
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# === IDE ===
+.vscode/
+.idea/
