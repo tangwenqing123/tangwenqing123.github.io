@@ -3,20 +3,23 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>唐文青 · 星辰 | AI应用工程师</title>
-    <meta name="description" content="唐文青（星辰）的个人主页 — AI应用开发工程师，专注AI应用落地" />
+    <title>星辰 · 一人AI工作室 | 唐文青</title>
+    <meta name="description" content="星辰（唐文青）— 转行AI开发者，一人公司模式接项目、做产品、写内容" />
     <style>
         /* ===== Reset & Base ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg: #f8fafc;
-            --surface: #ffffff;
-            --text: #0f172a;
-            --muted: #64748b;
-            --accent: #6366f1;
-            --accent-soft: #eef2ff;
-            --border: #e2e8f0;
+            --bg: #0d1117;
+            --surface: #161b22;
+            --surface-hover: #1c2333;
+            --text: #e6edf3;
+            --text-secondary: #8b949e;
+            --accent: #58a6ff;
+            --accent-green: #3fb950;
+            --accent-orange: #d29922;
+            --border: #30363d;
             --radius: 12px;
+            --gradient: linear-gradient(135deg, #58a6ff, #bc8cff);
         }
         html { scroll-behavior: smooth; }
         body {
@@ -31,41 +34,75 @@
 
         /* ===== Header ===== */
         header {
-            padding: 64px 0 48px;
+            padding: 72px 0 48px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 400px;
+            background: radial-gradient(ellipse, rgba(88,166,255,0.08) 0%, transparent 70%);
+            pointer-events: none;
         }
         .avatar {
             width: 96px; height: 96px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #6366f1, #a78bfa);
+            background: var(--gradient);
             display: flex; align-items: center; justify-content: center;
             margin: 0 auto 20px;
             font-size: 36px;
             color: #fff;
-            box-shadow: 0 4px 20px rgba(99,102,241,0.25);
+            box-shadow: 0 4px 24px rgba(88,166,255,0.2);
+            position: relative;
         }
         header h1 {
             font-size: 32px; font-weight: 700;
             letter-spacing: -0.5px;
         }
-        header h1 .alias { color: var(--muted); font-weight: 400; }
+        header h1 .alias { color: var(--text-secondary); font-weight: 400; }
         header .tagline {
             margin-top: 8px;
-            font-size: 18px;
-            color: var(--muted);
+            font-size: 16px;
+            color: var(--text-secondary);
         }
         header .badge-group {
-            margin-top: 16px;
+            margin-top: 20px;
             display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
         }
         .badge {
             display: inline-block;
             padding: 4px 14px;
             border-radius: 999px;
-            font-size: 13px;
+            font-size: 12px;
             font-weight: 500;
-            background: var(--accent-soft);
-            color: var(--accent);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            background: var(--surface);
+        }
+        .badge.python { border-color: #3572A5; color: #58a6ff; }
+        .badge.spring { border-color: #6DB33F; color: #7ee787; }
+        .badge.vue { border-color: #4FC08D; color: #7ee787; }
+        .badge.rag { border-color: #d29922; color: #d29922; }
+        .badge.docker { border-color: #2496ED; color: #58a6ff; }
+        .badge.deepseek { border-color: #bc8cff; color: #bc8cff; }
+
+        /* ===== Section Title ===== */
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-title::after {
+            content: '';
+            flex: 1; height: 1px;
+            background: var(--border);
         }
 
         /* ===== About ===== */
@@ -76,10 +113,10 @@
             padding: 36px 32px;
             margin-bottom: 32px;
         }
-        .about p { font-size: 15px; margin-bottom: 12px; }
-        .about p:last-child { margin-bottom: 0; }
+        .about p { font-size: 15px; margin-bottom: 12px; color: var(--text-secondary); }
+        .about strong { color: var(--text); }
         .about .highlight {
-            background: var(--accent-soft);
+            background: rgba(88,166,255,0.08);
             padding: 12px 16px;
             border-radius: 8px;
             font-size: 14px;
@@ -88,18 +125,27 @@
             margin-top: 16px;
         }
 
-        /* ===== Section Title ===== */
-        .section-title {
-            font-size: 22px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex; align-items: center; gap: 8px;
+        /* ===== Status Row ===== */
+        .status-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 32px;
         }
-        .section-title::after {
-            content: '';
-            flex: 1; height: 1px;
-            background: var(--border);
+        .status-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px;
+            text-align: center;
+            transition: border-color .2s;
         }
+        .status-card:hover { border-color: var(--accent); }
+        .status-card .emoji { font-size: 28px; margin-bottom: 8px; display: block; }
+        .status-card .label { font-size: 12px; color: var(--text-secondary); }
+        .status-card .value { font-size: 14px; font-weight: 600; margin-top: 4px; }
+        .status-card .value.green { color: var(--accent-green); }
+        .status-card .value.yellow { color: var(--accent-orange); }
 
         /* ===== Projects ===== */
         .projects { margin-bottom: 40px; }
@@ -109,12 +155,9 @@
             border-radius: var(--radius);
             padding: 28px 32px;
             margin-bottom: 16px;
-            transition: box-shadow .2s, transform .2s;
+            transition: border-color .2s;
         }
-        .project-card:hover {
-            box-shadow: 0 4px 16px rgba(0,0,0,0.06);
-            transform: translateY(-2px);
-        }
+        .project-card:hover { border-color: var(--accent); }
         .project-card h3 {
             font-size: 18px;
             font-weight: 600;
@@ -122,42 +165,83 @@
         }
         .project-card .meta {
             font-size: 13px;
-            color: var(--muted);
+            color: var(--text-secondary);
             margin-bottom: 10px;
         }
         .project-card p {
             font-size: 14px;
-            color: #334155;
+            color: var(--text-secondary);
         }
-        .project-card .tags {
+        .project-card .status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        .status-badge.active { background: rgba(63,185,80,0.15); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.3); }
+        .status-badge.wip { background: rgba(210,153,34,0.15); color: var(--accent-orange); border: 1px solid rgba(210,153,34,0.3); }
+        .status-badge.demo { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
+        .tags {
             display: flex; gap: 6px; flex-wrap: wrap;
             margin-top: 12px;
         }
-        .project-card .tags span {
+        .tags span {
             padding: 2px 10px;
             border-radius: 999px;
-            font-size: 12px;
-            background: #f1f5f9;
-            color: var(--muted);
+            font-size: 11px;
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
         }
+        .project-card .links {
+            margin-top: 12px;
+            display: flex; gap: 12px;
+        }
+        .project-card .links a {
+            font-size: 13px;
+            color: var(--accent);
+            text-decoration: none;
+        }
+        .project-card .links a:hover { text-decoration: underline; }
 
         /* ===== Skills ===== */
         .skills { margin-bottom: 40px; }
         .skill-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 12px;
+            gap: 10px;
         }
         .skill-item {
             background: var(--surface);
             border: 1px solid var(--border);
             border-radius: var(--radius);
-            padding: 16px 20px;
+            padding: 14px 18px;
             text-align: center;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
+            transition: border-color .2s;
         }
-        .skill-item .emoji { display: block; font-size: 24px; margin-bottom: 6px; }
+        .skill-item:hover { border-color: var(--accent); }
+        .skill-item .emoji { display: block; font-size: 22px; margin-bottom: 4px; }
+
+        /* ===== Services ===== */
+        .services { margin-bottom: 40px; }
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            transition: border-color .2s;
+        }
+        .service-card:hover { border-color: var(--accent); }
+        .service-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+        .service-card p { font-size: 13px; color: var(--text-secondary); }
 
         /* ===== Contact ===== */
         .contact {
@@ -168,7 +252,7 @@
             text-align: center;
             margin-bottom: 48px;
         }
-        .contact p { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
+        .contact p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
         .contact-links {
             display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
         }
@@ -179,33 +263,45 @@
             font-size: 14px;
             font-weight: 500;
             text-decoration: none;
-            transition: background .2s;
+            transition: all .2s;
         }
         .contact-links .primary {
             background: var(--accent);
-            color: #fff;
+            color: #0d1117;
         }
-        .contact-links .primary:hover { background: #4f46e5; }
+        .contact-links .primary:hover { background: #79c0ff; }
         .contact-links .secondary {
-            background: var(--border);
+            border: 1px solid var(--border);
             color: var(--text);
         }
-        .contact-links .secondary:hover { background: #cbd5e1; }
+        .contact-links .secondary:hover { background: var(--surface-hover); }
+
+        /* ===== GitHub Stats ===== */
+        .github-stats {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        .github-stats img { border-radius: var(--radius); max-width: 100%; }
 
         /* ===== Footer ===== */
         footer {
             text-align: center;
             padding: 24px 0 48px;
             font-size: 13px;
-            color: var(--muted);
+            color: var(--text-secondary);
         }
 
         /* ===== Responsive ===== */
         @media (max-width: 600px) {
-            header { padding: 40px 0 32px; }
+            header { padding: 48px 0 32px; }
             header h1 { font-size: 26px; }
             .about, .project-card, .contact { padding: 24px 20px; }
             .skill-grid { grid-template-columns: repeat(2, 1fr); }
+            .service-grid { grid-template-columns: 1fr; }
+            .status-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -213,14 +309,17 @@
 
 <header>
     <div class="avatar">🌟</div>
-    <h1>唐文青 <span class="alias">· 星辰</span></h1>
-    <p class="tagline">AI应用工程师 · 从零到一落地AI产品</p>
+    <h1>星辰 <span class="alias">· 一人AI工作室</span></h1>
+    <p class="tagline">🚀 转行AI开发者 · 一人公司模式 · 用代码解决问题</p>
     <div class="badge-group">
-        <span class="badge">🐍 Python</span>
+        <span class="badge python">🐍 Python</span>
         <span class="badge">⚡ FastAPI</span>
-        <span class="badge">🧠 RAGFlow</span>
-        <span class="badge">🤖 AI API</span>
-        <span class="badge">⚛️ React</span>
+        <span class="badge spring">🍃 Spring Boot</span>
+        <span class="badge vue">💚 Vue 3</span>
+        <span class="badge">⚛️ Next.js</span>
+        <span class="badge rag">🧠 RAGFlow</span>
+        <span class="badge docker">🐳 Docker</span>
+        <span class="badge deepseek">🤖 DeepSeek</span>
     </div>
 </header>
 
@@ -230,131 +329,141 @@
     <section class="about">
         <p>
             你好，我是 <strong>唐文青</strong>（你也可以叫我 <strong>星辰</strong> 🌟）。
-            我是刚转行进入AI领域的应用工程师，目前全职探索AI落地的各种可能性。
+            29岁从零转行AI开发，目前以<strong>一人公司模式</strong>接项目、做产品、写内容。
         </p>
         <p>
-            我擅长把<b>数据和知识变成可用的产品</b>——从搭建RAG知识库、对接大模型API，
-            到完整的全栈应用都有实战经验。做过内容审核，也做过AI系统开发，
-            我的优势是理解"真实需求长什么样"。
+            我擅长把<b>想法变成可用的产品</b>——从AI后端RAG系统、自动化流水线，
+            到完整的小程序+管理后台都有实战经验。做过的项目涵盖了知识工程、
+            智慧食堂、Agent平台等多个方向。
+        </p>
+        <p>
+            我相信 <strong>"先完成，再完美"</strong>——代码写出来比囤着有用，
+            内容发出去比存着有价值。
         </p>
         <div class="highlight">
-            📍 现居杭州 · 西湖区 &nbsp;|&nbsp; 🎯 短期目标：多做小项目，积累作品集，接项目实现独立
+            📍 杭州 · 全职独立开发 &nbsp;|&nbsp; 🎯 做可交付的项目，写有价值的内容
         </div>
     </section>
 
+    <!-- Status Row -->
+    <div class="status-row">
+        <div class="status-card">
+            <span class="emoji">🧠</span>
+            <div class="label">知识工程</div>
+            <div class="value yellow">KnowledgeForge V3</div>
+        </div>
+        <div class="status-card">
+            <span class="emoji">🍱</span>
+            <div class="label">全栈项目</div>
+            <div class="value green">食堂小程序 95%</div>
+        </div>
+        <div class="status-card">
+            <span class="emoji">⚡</span>
+            <div class="label">自动化流水线</div>
+            <div class="value green">一人公司工具链</div>
+        </div>
+    </div>
+
     <!-- Projects -->
     <section class="projects">
-        <h2 class="section-title">📦 项目</h2>
+        <h2 class="section-title">📦 置顶项目</h2>
 
         <div class="project-card">
-            <h3>KnowledgeForge · 知识提取与管理平台</h3>
-            <div class="meta">Python · FastAPI · Next.js · RAGFlow · DeepSeek · 2026-05</div>
+            <h3>🧠 KnowledgeForge V3</h3>
+            <div class="meta">Python · FastAPI · Next.js · LangExtract · DeepSeek · ChromaDB · RAGFlow</div>
             <p>
-                从 epub 电子书到结构化知识的全链路平台：上传书籍 → DeepSeek AI 自动提取
-                11 种知识元（概念/案例/观点/模型等）→ RAGFlow 中央存储 → 全库搜索检索 →
-                AI 内容生产台一键生成文章/卡片/金句合集。内置图片管线，从书籍中提取
-                原版配图并关联知识元。
+                EPUB→结构化知识元→知识图谱→学习模式→内容生产，全链路知识工程平台。
+                16,000+行Python代码，从零搭建的AI知识提取引擎，支持11种知识元类型。
             </p>
-            <p style="margin-top:8px; font-size:13px; color:#64748b;">
-                📚 已处理311本epub电子书 · 知识元预计10,000+ · 图片资产约130,000张
-            </p>
+            <span class="status-badge wip">🟡 迭代中 · 60%</span>
             <div class="tags">
-                <span>FastAPI</span>
-                <span>Next.js</span>
-                <span>RAGFlow</span>
-                <span>DeepSeek</span>
-                <span>知识提取</span>
-                <span>epub解析</span>
+                <span>FastAPI</span><span>Next.js</span><span>RAGFlow</span>
+                <span>DeepSeek</span><span>知识提取</span><span>Celery</span>
+            </div>
+            <div class="links">
+                <a href="https://github.com/tangwenqing123/KnowledgeForge-V3" target="_blank">🔗 GitHub</a>
             </div>
         </div>
 
         <div class="project-card">
-            <h3>三方典 · 中医×AI健康内容品牌</h3>
-            <div class="meta">品牌策略 · 内容运营 · 知识库搭建 · 2026-05</div>
+            <h3>🍱 食堂订餐小程序</h3>
+            <div class="meta">Spring Boot 3 · Vue 3 · 微信小程序 · MySQL · Redis</div>
             <p>
-                基于47.8GB中医典籍资料库，打造"体质调理 + 食疗推荐 + 舌诊分析"三个方向的健康IP品牌。
-                已完成账号定位、四平台适配简介、对标竞品分析、首批选题策划。
-                Slogan：<strong>"翻典说话，三方有据"</strong>。
+                完整全栈项目：微信小程序端用户订餐 + Vue3管理后台运营管理 + Spring Boot REST API。
+                覆盖手机号登录、菜谱发布、订餐、订单、人员管理、菜品CRUD全流程。
             </p>
+            <span class="status-badge demo">🟢 可演示 · 95%</span>
             <div class="tags">
-                <span>品牌定位</span>
-                <span>内容策略</span>
-                <span>中医知识库</span>
-                <span>小红书</span>
-                <span>视频号</span>
+                <span>Spring Boot</span><span>Vue 3</span><span>微信小程序</span>
+                <span>MySQL</span><span>Redis</span><span>Docker</span>
+            </div>
+            <div class="links">
+                <a href="https://github.com/tangwenqing123/longxia_tang" target="_blank">🔗 GitHub</a>
             </div>
         </div>
 
         <div class="project-card">
-            <h3>医学AI三助手 · RAG知识库系统</h3>
-            <div class="meta">Python · RAGFlow · PyMuPDF · TEI · 2026-05</div>
+            <h3>⚡ 一人AI工作室工具链</h3>
+            <div class="meta">Hermes Agent · RAGFlow · Dify · DeepSeek · Cron · GitHub Actions</div>
             <p>
-                从47.8GB医学书籍、2000+中医古籍中提取数据，搭建4个独立知识库
-                （体质调理 / 食疗推荐 / 舌诊分析 / 通用医学）。
-                基于RAGFlow + 本地TEI嵌入服务，实现私有化AI检索问答。
+                用AI Agent驱动的自动化工作流：每日开发日志→自动内容生成→去AI味优化→待发布审核。
+                接项目交付模板 + 一站式仪表盘，一人公司的全链路基础设施。
             </p>
+            <span class="status-badge active">🟢 运行中</span>
             <div class="tags">
-                <span>RAGFlow</span>
-                <span>TEI</span>
-                <span>知识库</span>
-                <span>NLP</span>
+                <span>Hermes</span><span>RAGFlow</span><span>Dify</span>
+                <span>自动化</span><span>一人公司</span>
             </div>
         </div>
+    </section>
 
-        <div class="project-card">
-            <h3>数据解读 · 百家号/公众号内容号</h3>
-            <div class="meta">内容创作 · 数据可视化 · 2026-05</div>
-            <p>
-                经营百家号和公众号"成长中的数据解读爱好者七七"，用数据和逻辑解读行业趋势。
-                代表作品：《AI人才缺口500万，这些岗位薪资涨了3倍》在全网获得可观阅读量。
-            </p>
-            <div class="tags">
-                <span>百家号</span>
-                <span>公众号</span>
-                <span>数据分析</span>
-                <span>内容创作</span>
+    <!-- Services -->
+    <section class="services">
+        <h2 class="section-title">💼 可以接的项目</h2>
+        <div class="service-grid">
+            <div class="service-card">
+                <h4>🧠 AI后端 / RAG系统</h4>
+                <p>文档知识库、智能问答、内容提取管道、RAGFlow/Dify部署调优</p>
+            </div>
+            <div class="service-card">
+                <h4>⚡ 自动化工作流</h4>
+                <p>Hermes/Cron/AI Agent驱动的自动化内容生产和发布流水线</p>
+            </div>
+            <div class="service-card">
+                <h4>🌐 全栈应用开发</h4>
+                <p>小程序 + 管理后台 + API + 数据库，从0到1完整交付</p>
+            </div>
+            <div class="service-card">
+                <h4>🐳 Docker部署运维</h4>
+                <p>服务容器化编排、RAGFlow/Dify/ Milvus等AI基础设施部署</p>
             </div>
         </div>
     </section>
 
     <!-- Skills -->
     <section class="skills">
-        <h2 class="section-title">🔧 技能</h2>
+        <h2 class="section-title">🔧 技术栈</h2>
         <div class="skill-grid">
-            <div class="skill-item">
-                <span class="emoji">🐍</span>
-                Python / FastAPI
-            </div>
-            <div class="skill-item">
-                <span class="emoji">⚛️</span>
-                React / Next.js
-            </div>
-            <div class="skill-item">
-                <span class="emoji">🧠</span>
-                RAGFlow / RAG
-            </div>
-            <div class="skill-item">
-                <span class="emoji">🤖</span>
-                通义千问 / DeepSeek API
-            </div>
-            <div class="skill-item">
-                <span class="emoji">🗄️</span>
-                SQL / PostgreSQL
-            </div>
-            <div class="skill-item">
-                <span class="emoji">📦</span>
-                Docker / Git
-            </div>
-            <div class="skill-item">
-                <span class="emoji">📊</span>
-                数据分析 / 数据解读
-            </div>
-            <div class="skill-item">
-                <span class="emoji">📝</span>
-                内容策略 / 品牌定位
-            </div>
+            <div class="skill-item"><span class="emoji">🐍</span>Python / FastAPI</div>
+            <div class="skill-item"><span class="emoji">🍃</span>Spring Boot 3</div>
+            <div class="skill-item"><span class="emoji">💚</span>Vue 3 / Element Plus</div>
+            <div class="skill-item"><span class="emoji">⚛️</span>Next.js / React</div>
+            <div class="skill-item"><span class="emoji">📱</span>微信小程序</div>
+            <div class="skill-item"><span class="emoji">🧠</span>RAGFlow / Dify</div>
+            <div class="skill-item"><span class="emoji">🤖</span>LLM API / LangGraph</div>
+            <div class="skill-item"><span class="emoji">🗄️</span>MySQL / PostgreSQL</div>
+            <div class="skill-item"><span class="emoji">📦</span>Redis / Milvus / ES</div>
+            <div class="skill-item"><span class="emoji">🐳</span>Docker / Docker Compose</div>
+            <div class="skill-item"><span class="emoji">🔧</span>Git / GitHub Actions</div>
+            <div class="skill-item"><span class="emoji">🧰</span>Hermes Agent / Obsidian</div>
         </div>
     </section>
+
+    <!-- GitHub Stats -->
+    <div class="github-stats">
+        <img src="https://github-readme-stats.vercel.app/api?username=tangwenqing123&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&text_color=8b949e&icon_color=58a6ff&title_color=58a6ff" height="160" alt="GitHub Stats" />
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tangwenqing123&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&text_color=8b949e&title_color=58a6ff" height="160" alt="Top Languages" />
+    </div>
 
     <!-- Contact -->
     <section class="contact">
@@ -363,8 +472,8 @@
             <a href="https://github.com/tangwenqing123" target="_blank" class="secondary" rel="noopener">
                 🐙 GitHub
             </a>
-            <a href="https://baijiahao.baidu.com/u?app_id=1741597830412845" target="_blank" class="secondary" rel="noopener">
-                📱 百家号
+            <a href="https://tangwenqing123.github.io" target="_blank" class="secondary" rel="noopener">
+                🌐 主页
             </a>
             <a href="mailto:2571453147@qq.com" class="primary">
                 📧 联系我
@@ -375,7 +484,7 @@
 </main>
 
 <footer>
-    © 2026 唐文青 · 星辰 &nbsp;·&nbsp; Made with 🌟
+    © 2026 唐文青 · 星辰 &nbsp;·&nbsp; Built with 🌟 &nbsp;·&nbsp; 一人公司 · 持续交付 · 做有积累的事
 </footer>
 
 </body>
