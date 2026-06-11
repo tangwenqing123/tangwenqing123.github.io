@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>星辰 · 一人AI工作室 | 唐文青</title>
-    <meta name="description" content="星辰（唐文青）— 转行AI开发者，一人公司模式接项目、做产品、写内容" />
+    <meta name="description" content="星辰（唐文青）— NLP出身，深耕AI Agent+RAG+知识工程，一人公司模式接项目、做产品、写内容" />
     <style>
         /* ===== Reset & Base ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -310,16 +310,16 @@
 <header>
     <div class="avatar">🌟</div>
     <h1>星辰 <span class="alias">· 一人AI工作室</span></h1>
-    <p class="tagline">🚀 转行AI开发者 · 一人公司模式 · 用代码解决问题</p>
+    <p class="tagline">🚀 NLP出身 · 深耕AI Agent+RAG+知识工程 · 一人公司模式</p>
     <div class="badge-group">
         <span class="badge python">🐍 Python</span>
         <span class="badge">⚡ FastAPI</span>
-        <span class="badge spring">🍃 Spring Boot</span>
-        <span class="badge vue">💚 Vue 3</span>
-        <span class="badge">⚛️ Next.js</span>
-        <span class="badge rag">🧠 RAGFlow</span>
+        <span class="badge">🧠 LangGraph</span>
+        <span class="badge rag">📚 RAG</span>
+        <span class="badge">🔧 MCP/A2A</span>
+        <span class="badge">🏭 PyTorch</span>
         <span class="badge docker">🐳 Docker</span>
-        <span class="badge deepseek">🤖 DeepSeek</span>
+        <span class="badge">🕸️ Neo4j</span>
     </div>
 </header>
 
@@ -329,16 +329,17 @@
     <section class="about">
         <p>
             你好，我是 <strong>唐文青</strong>（你也可以叫我 <strong>星辰</strong> 🌟）。
-            29岁从零转行AI开发，目前以<strong>一人公司模式</strong>接项目、做产品、写内容。
+            NLP工程师出身，从模型微调(BERT/ERNIE LoRA)做到RAG知识库系统，
+            再到Multi-Agent协作平台(LangGraph+A2A+MCP)，一路深耕AI工程落地。
         </p>
         <p>
-            我擅长把<b>想法变成可用的产品</b>——从AI后端RAG系统、自动化流水线，
-            到完整的小程序+管理后台都有实战经验。做过的项目涵盖了知识工程、
-            智慧食堂、Agent平台等多个方向。
+            目前以<strong>一人公司模式</strong>接项目、做产品、写内容。
+            擅长把"技术想法"变成"可交付的系统"——从Agent协作平台、RAG知识库、
+            到模型微调部署，都有完整实战经验。
         </p>
         <p>
             我相信 <strong>"先完成，再完美"</strong>——代码写出来比囤着有用，
-            内容发出去比存着有价值。
+            项目交付比空谈有价值。
         </p>
         <div class="highlight">
             📍 杭州 · 全职独立开发 &nbsp;|&nbsp; 🎯 做可交付的项目，写有价值的内容
@@ -369,50 +370,64 @@
         <h2 class="section-title">📦 置顶项目</h2>
 
         <div class="project-card">
-            <h3>🧠 KnowledgeForge V3</h3>
-            <div class="meta">Python · FastAPI · Next.js · LangExtract · DeepSeek · ChromaDB · RAGFlow</div>
+            <h3>🧠 AI-Native Agent 平台</h3>
+            <div class="meta">2025.12-2026.03 · LangGraph · A2A协议 · MCP · GLM-4-9B-Chat · LoRA · Redis Streams</div>
             <p>
-                EPUB→结构化知识元→知识图谱→学习模式→内容生产，全链路知识工程平台。
-                16,000+行Python代码，从零搭建的AI知识提取引擎，支持11种知识元类型。
+                7-Agent协作系统：Supervisor Agent 调度架构，基于 LangGraph ReAct 实现工具调用链。
+                通过 A2A 协议实现 Agent 间通信（Redis Streams 做消息队列），集成 MCP Server 扩展 Agent 能力。
+                GLM-4-9B-Chat 经 3000+ 条数据 LoRA 微调，准确率从82%提升至96%。
             </p>
-            <span class="status-badge wip">🟡 迭代中 · 60%</span>
+            <span class="status-badge demo">🟢 可演示</span>
             <div class="tags">
-                <span>FastAPI</span><span>Next.js</span><span>RAGFlow</span>
-                <span>DeepSeek</span><span>知识提取</span><span>Celery</span>
-            </div>
-            <div class="links">
-                <a href="https://github.com/tangwenqing123/KnowledgeForge-V3" target="_blank">🔗 GitHub</a>
+                <span>LangGraph</span><span>A2A</span><span>MCP</span>
+                <span>GLM-4</span><span>LoRA</span><span>Redis</span>
             </div>
         </div>
 
         <div class="project-card">
-            <h3>🍱 食堂订餐小程序</h3>
-            <div class="meta">Spring Boot 3 · Vue 3 · 微信小程序 · MySQL · Redis</div>
+            <h3>📚 RAG 知识库系统</h3>
+            <div class="meta">2025.07-2025.11 · Whisper · ColPali · Milvus · Neo4j · LangChain · FastAPI</div>
             <p>
-                完整全栈项目：微信小程序端用户订餐 + Vue3管理后台运营管理 + Spring Boot REST API。
-                覆盖手机号登录、菜谱发布、订餐、订单、人员管理、菜品CRUD全流程。
-            </p>
-            <span class="status-badge demo">🟢 可演示 · 95%</span>
-            <div class="tags">
-                <span>Spring Boot</span><span>Vue 3</span><span>微信小程序</span>
-                <span>MySQL</span><span>Redis</span><span>Docker</span>
-            </div>
-            <div class="links">
-                <a href="https://github.com/tangwenqing123/longxia_tang" target="_blank">🔗 GitHub</a>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <h3>⚡ 一人AI工作室工具链</h3>
-            <div class="meta">Hermes Agent · RAGFlow · Dify · DeepSeek · Cron · GitHub Actions</div>
-            <p>
-                用AI Agent驱动的自动化工作流：每日开发日志→自动内容生成→去AI味优化→待发布审核。
-                接项目交付模板 + 一站式仪表盘，一人公司的全链路基础设施。
+                365本得到听书PDF打造RAG知识库。语音部分：VAD切割200+片段→Whisper Large-v3转录→Pyannote说话人分离。
+                图文检索：ColPali 解析PDF视觉布局。混合检索：BERT-base(4分类F1=0.92, 15ms) + BM25 + Cross-Encoder重排。
+                HyDE策略：查询→LLM生成假设文档→向量检索，F1从60%提升至85%。Neo4j存储3000+实体关联，Top5命中率91%。
             </p>
             <span class="status-badge active">🟢 运行中</span>
             <div class="tags">
-                <span>Hermes</span><span>RAGFlow</span><span>Dify</span>
-                <span>自动化</span><span>一人公司</span>
+                <span>Whisper</span><span>ColPali</span><span>Milvus</span>
+                <span>Neo4j</span><span>LangChain</span><span>HyDE</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>🧩 Khoj AI 知识中枢</h3>
+            <div class="meta">2026.01-至今 · Khoj · LangGraph · Neo4j · BGE-M3 · Milvus · D3.js</div>
+            <p>
+                AI-native知识管理平台。底层：BGE-M3 Embedding + 自适应Chunking策略(72%→87%) +
+                Milvus向量库。知识层：Neo4j存储3000+实体+5000+关联关系，D3.js交互式图谱可视化。
+                输入层：多路Content Plugin(RSS 3源 + Jina Reader)自动摄入。Agent层：LangGraph编排"AI编辑"Agent，
+                实现自动摘要/分类/关联推荐。
+            </p>
+            <span class="status-badge wip">🟡 迭代中</span>
+            <div class="tags">
+                <span>Khoj</span><span>LangGraph</span><span>Neo4j</span>
+                <span>BGE-M3</span><span>Milvus</span><span>D3.js</span>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <h3>🏭 NLP 情感分类系统</h3>
+            <div class="meta">2025.03-2025.06 · PyTorch · BERT · ERNIE 3.0 · LoRA · ONNX</div>
+            <p>
+                ChnSentiCorp中文情感分类。从 jieba+TF-IDF+SVM(Baseline F1=0.89) 到 PyTorch TextCNN、
+                BiLSTM+Attention，最终以 ERNIE 3.0 + PERT 达到 F1=0.95 SOTA。
+                Qwen-3-8B/DeepSeek-V3 零样本对比实验 + 8GB显存环境下 Qwen-3-0.6B LoRA 微调。
+                生产部署：FastAPI + ONNX Runtime 提供 BERT 推理服务。
+            </p>
+            <span class="status-badge active">🟢 已完成</span>
+            <div class="tags">
+                <span>PyTorch</span><span>BERT</span><span>ERNIE 3.0</span>
+                <span>LoRA</span><span>ONNX</span><span>vLLM</span>
             </div>
         </div>
     </section>
@@ -422,21 +437,21 @@
         <h2 class="section-title">💼 可以接的项目</h2>
         <div class="service-grid">
             <div class="service-card">
-                <h4>🧠 AI后端 / RAG系统</h4>
-                <p>文档知识库、智能问答、内容提取管道、RAGFlow/Dify部署调优</p>
-            </div>
-            <div class="service-card">
-                <h4>⚡ 自动化工作流</h4>
-                <p>Hermes/Cron/AI Agent驱动的自动化内容生产和发布流水线</p>
-            </div>
-            <div class="service-card">
-                <h4>🌐 全栈应用开发</h4>
-                <p>小程序 + 管理后台 + API + 数据库，从0到1完整交付</p>
-            </div>
-            <div class="service-card">
-                <h4>🐳 Docker部署运维</h4>
-                <p>服务容器化编排、RAGFlow/Dify/ Milvus等AI基础设施部署</p>
-            </div>
+                    <h4>🧠 AI Agent 系统</h4>
+                    <p>Multi-Agent协作平台、MCP Server集成、Function Call工作流、LangGraph编排</p>
+                </div>
+                <div class="service-card">
+                    <h4>📚 RAG 知识库</h4>
+                    <p>文档知识库、混合检索(BM25+向量+重排)、多模态RAG、Neo4j知识图谱</p>
+                </div>
+                <div class="service-card">
+                    <h4>🔧 模型微调与部署</h4>
+                    <p>LLM+LoRA微调、BERT/ERNIE序列任务、ONNX/vLLM生产化部署</p>
+                </div>
+                <div class="service-card">
+                    <h4>🌐 全栈开发 + 运维</h4>
+                    <p>小程序+后台+API、AI应用前后端、Milvus/Neo4j/Redis编排部署</p>
+                </div>
         </div>
     </section>
 
@@ -444,18 +459,18 @@
     <section class="skills">
         <h2 class="section-title">🔧 技术栈</h2>
         <div class="skill-grid">
+            <div class="skill-item"><span class="emoji">🧠</span>LangGraph / A2A / MCP</div>
             <div class="skill-item"><span class="emoji">🐍</span>Python / FastAPI</div>
-            <div class="skill-item"><span class="emoji">🍃</span>Spring Boot 3</div>
-            <div class="skill-item"><span class="emoji">💚</span>Vue 3 / Element Plus</div>
-            <div class="skill-item"><span class="emoji">⚛️</span>Next.js / React</div>
-            <div class="skill-item"><span class="emoji">📱</span>微信小程序</div>
-            <div class="skill-item"><span class="emoji">🧠</span>RAGFlow / Dify</div>
-            <div class="skill-item"><span class="emoji">🤖</span>LLM API / LangGraph</div>
-            <div class="skill-item"><span class="emoji">🗄️</span>MySQL / PostgreSQL</div>
-            <div class="skill-item"><span class="emoji">📦</span>Redis / Milvus / ES</div>
+            <div class="skill-item"><span class="emoji">📚</span>RAG / LangChain / Milvus</div>
+            <div class="skill-item"><span class="emoji">🕸️</span>Neo4j / 知识图谱</div>
+            <div class="skill-item"><span class="emoji">🏭</span>PyTorch / BERT / ERNIE</div>
+            <div class="skill-item"><span class="emoji">🔧</span>LoRA / QLoRA / 微调</div>
+            <div class="skill-item"><span class="emoji">🎤</span>Whisper / ColPali / 多模态</div>
+            <div class="skill-item"><span class="emoji">🗄️</span>MySQL / PostgreSQL / Redis</div>
             <div class="skill-item"><span class="emoji">🐳</span>Docker / Docker Compose</div>
-            <div class="skill-item"><span class="emoji">🔧</span>Git / GitHub Actions</div>
-            <div class="skill-item"><span class="emoji">🧰</span>Hermes Agent / Obsidian</div>
+            <div class="skill-item"><span class="emoji">🔌</span>ONNX / vLLM / 部署</div>
+            <div class="skill-item"><span class="emoji">☁️</span>Git / GitHub Actions</div>
+            <div class="skill-item"><span class="emoji">🧰</span>Hermes Agent / Dify</div>
         </div>
     </section>
 
