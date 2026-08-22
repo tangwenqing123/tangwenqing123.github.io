@@ -205,6 +205,29 @@
         }
         .project-card .links a:hover { text-decoration: underline; }
 
+        /* ===== Tools (工具集) ===== */
+        .tools { margin: 48px 0; }
+        .tools-grid { display: flex; flex-direction: column; gap: 12px; }
+        .tool-card {
+            display: flex; align-items: center; gap: 16px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 22px;
+            text-decoration: none;
+            transition: border-color .2s, transform .2s;
+        }
+        .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+        .tool-card .tool-icon {
+            width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px;
+            background: linear-gradient(135deg, #3a5a6e, #6b8f71);
+        }
+        .tool-card h3 { font-size: 16px; font-weight: 600; color: var(--text); }
+        .tool-card p { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
+        .tool-card .tool-go { margin-left: auto; color: var(--accent); font-size: 18px; }
+
         /* ===== Skills ===== */
         .skills { margin-bottom: 40px; }
         .skill-grid {
@@ -471,6 +494,21 @@
             <div class="skill-item"><span class="emoji">🔌</span>ONNX / vLLM / 部署</div>
             <div class="skill-item"><span class="emoji">☁️</span>Git / GitHub Actions</div>
             <div class="skill-item"><span class="emoji">🧰</span>Hermes Agent / Dify</div>
+        </div>
+    </section>
+
+    <!-- Tools (工具集) -->
+    <section class="tools">
+        <h2 class="section-title">🧰 工具集</h2>
+        <div class="tools-grid">
+            <a href="https://tangwenqing123.github.io/gaoshan-liushui/" target="_blank" rel="noopener" class="tool-card">
+                <div class="tool-icon">🏔️</div>
+                <div>
+                    <h3>高山流水 · 遇知音</h3>
+                    <p>金句人格测试 · 选 5 句金句，遇见你灵魂里的知音（12+2 古典人格卡）</p>
+                </div>
+                <span class="tool-go">→</span>
+            </a>
         </div>
     </section>
 
