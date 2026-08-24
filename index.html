@@ -3,542 +3,114 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>星辰 · 一人AI工作室 | 唐文青</title>
-    <meta name="description" content="星辰（唐文青）— NLP出身，深耕AI Agent+RAG+知识工程，一人公司模式接项目、做产品、写内容" />
+    <meta name="description" content="唐文青的个人开发者工作室：AI Agent、RAG、知识工程与内容产品。" />
+    <title>唐文青 / AI 工程实践</title>
     <style>
-        /* ===== Reset & Base ===== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root {
-            --bg: #0d1117;
-            --surface: #161b22;
-            --surface-hover: #1c2333;
-            --text: #e6edf3;
-            --text-secondary: #8b949e;
-            --accent: #58a6ff;
-            --accent-green: #3fb950;
-            --accent-orange: #d29922;
-            --border: #30363d;
-            --radius: 12px;
-            --gradient: linear-gradient(135deg, #58a6ff, #bc8cff);
+        @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Serif+SC:wght@500;700;900&display=swap');
+        :root { --paper:#edf0ec; --paper-deep:#dfe7e1; --ink:#17231e; --muted:#64716a; --line:#b9c8bf; --orange:#ff6745; --green:#8ed1b0; --cyan:#7de3e0; --night:#101c1a; --white:#f8faf7; }
+        * { box-sizing:border-box; }
+        html { scroll-behavior:smooth; }
+        body { margin:0; background:var(--paper); color:var(--ink); font-family:Manrope,"PingFang SC","Microsoft YaHei",sans-serif; line-height:1.6; background-image:linear-gradient(rgba(23,35,30,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(23,35,30,.035) 1px,transparent 1px); background-size:32px 32px; }
+        a { color:inherit; }
+        a:focus-visible, button:focus-visible { outline:3px solid var(--orange); outline-offset:4px; }
+        .wrap { width:min(1180px,calc(100% - 48px)); margin:0 auto; }
+        .mono { font:500 12px/1.4 "DM Mono",monospace; letter-spacing:.04em; text-transform:uppercase; }
+        .site-header { border-bottom:1px solid var(--line); padding:22px 0; }
+        .nav { display:flex; align-items:center; justify-content:space-between; gap:24px; }
+        .brand { display:flex; align-items:center; gap:12px; text-decoration:none; font-weight:800; }
+        .brand-mark { width:30px; height:30px; display:grid; place-items:center; background:var(--orange); color:var(--white); font-size:16px; transform:rotate(-8deg); }
+        .nav-links { display:flex; gap:28px; font-size:13px; color:var(--muted); }
+        .nav-links a { text-decoration:none; }
+        .nav-links a:hover { color:var(--orange); }
+        .hero { min-height:650px; display:grid; grid-template-columns:1.15fr .85fr; align-items:center; gap:72px; padding:88px 0 112px; }
+        .eyebrow { color:var(--orange); margin-bottom:24px; }
+        h1 { max-width:760px; margin:0; font:900 clamp(48px,7.4vw,104px)/.98 "Noto Serif SC",serif; letter-spacing:-.06em; }
+        .hero-copy { max-width:600px; margin:30px 0 34px; font-size:clamp(17px,2vw,22px); color:var(--muted); }
+        .hero-copy strong { color:var(--ink); font-weight:700; }
+        .actions { display:flex; flex-wrap:wrap; gap:12px; }
+        .button { display:inline-flex; align-items:center; gap:10px; padding:13px 18px; border:1px solid var(--ink); text-decoration:none; font-weight:700; font-size:13px; transition:transform .2s ease,background .2s ease; }
+        .button:hover { transform:translateY(-3px); }
+        .button.primary { background:var(--ink); color:var(--white); }
+        .button.primary:hover { background:var(--orange); border-color:var(--orange); }
+        .button.light { background:transparent; }
+        .portrait { position:relative; justify-self:end; width:min(100%,360px); padding:16px; background:var(--night); border:1px solid var(--ink); box-shadow:18px 18px 0 var(--green); }
+        .portrait::before { content:""; position:absolute; inset:16px; border:1px solid rgba(125,227,224,.36); pointer-events:none; background:repeating-linear-gradient(0deg,transparent 0 7px,rgba(125,227,224,.06) 8px); }
+        .portrait::after { content:"AI / 01"; position:absolute; top:-13px; right:18px; padding:5px 8px; color:var(--night); background:var(--cyan); font:500 11px "DM Mono",monospace; }
+        .portrait::before { content:""; position:absolute; z-index:-1; inset:26px -24px -26px 24px; background:var(--green); transform:rotate(5deg); }
+        .portrait img { display:block; width:100%; aspect-ratio:1/1; object-fit:cover; filter:grayscale(.2) saturate(1.15) contrast(1.08); border:1px solid rgba(125,227,224,.5); }
+        .portrait-label { position:absolute; left:-26px; bottom:28px; padding:9px 12px; background:var(--orange); color:var(--white); font:500 12px "DM Mono",monospace; transform:rotate(-7deg); }
+        .orbit-note { margin-top:20px; color:var(--muted); font-size:13px; }
+        .band { background:var(--night); color:var(--white); margin:0 calc(50% - 50vw); padding:54px max(24px,calc((100vw - 1180px)/2)); position:relative; overflow:hidden; }
+        .band::after { content:"// SYSTEM ONLINE"; position:absolute; right:6vw; top:22px; color:rgba(125,227,224,.45); font:500 11px "DM Mono",monospace; }
+        .band-inner { display:grid; grid-template-columns:.7fr 1.3fr; gap:60px; align-items:start; }
+        .band h2 { margin:0; font:700 34px/1.12 "Noto Serif SC",serif; }
+        .band p { max-width:620px; margin:0; color:#bec8c0; font-size:17px; }
+        .signal-list { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:34px; background:#506057; }
+        .signal { background:var(--night); padding:18px; min-height:118px; }
+        .signal b { display:block; margin:16px 0 6px; color:var(--green); }
+        .signal small { color:#a8b4ab; }
+        section.content-section { padding:112px 0; }
+        .section-head { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:38px; border-bottom:1px solid var(--line); padding-bottom:16px; }
+        h2 { margin:0; font:700 42px/1.05 "Noto Serif SC",serif; letter-spacing:-.04em; }
+        .section-head p { margin:0; max-width:430px; color:var(--muted); font-size:14px; }
+        .project-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+        .project { display:flex; flex-direction:column; min-height:470px; border:1px solid var(--line); background:var(--white); text-decoration:none; transition:transform .25s ease,box-shadow .25s ease; }
+        .project:hover { transform:translateY(-6px); box-shadow:10px 10px 0 var(--cyan); }
+        .project-cover { width:100%; aspect-ratio:1.9/1; object-fit:cover; background:var(--paper-deep); border-bottom:1px solid var(--line); }
+        .project-body { display:flex; flex-direction:column; flex:1; padding:24px; }
+        .project-kicker { color:var(--orange); }
+        .project h3 { margin:13px 0 9px; font-size:23px; line-height:1.15; }
+        .project p { margin:0; color:var(--muted); font-size:14px; }
+        .project-foot { display:flex; justify-content:space-between; align-items:center; gap:14px; margin-top:auto; padding-top:24px; color:var(--muted); font:12px "DM Mono",monospace; }
+        .project-foot span:last-child { color:var(--ink); font-size:18px; }
+        .service-layout { display:grid; grid-template-columns:.9fr 1.1fr; gap:72px; }
+        .service-intro { color:var(--muted); font-size:17px; }
+        .service-list { border-top:1px solid var(--line); }
+        .service-item { display:grid; grid-template-columns:44px 1fr; gap:18px; padding:20px 0; border-bottom:1px solid var(--line); }
+        .service-item .num { color:var(--orange); font:500 13px "DM Mono",monospace; }
+        .service-item h3 { margin:0 0 5px; font-size:18px; }
+        .service-item p { margin:0; color:var(--muted); font-size:14px; }
+        .contact { background:var(--orange); color:var(--white); padding:64px; display:grid; grid-template-columns:1fr auto; align-items:end; gap:32px; }
+        .contact h2 { max-width:650px; font-size:clamp(36px,5vw,68px); }
+        .contact p { max-width:520px; margin:22px 0 0; color:#ffe7dd; }
+        .contact .button { border-color:var(--white); color:var(--white); }
+        .contact .button:hover { background:var(--white); color:var(--orange); }
+        footer { display:flex; justify-content:space-between; gap:20px; padding:28px 0 42px; color:var(--muted); font-size:12px; }
+        @media (max-width:760px) {
+            .wrap { width:min(100% - 32px,1180px); }
+            .nav-links { display:none; }
+            .hero,.band-inner,.service-layout,.contact { grid-template-columns:1fr; }
+            .hero { gap:50px; padding:65px 0 80px; }
+            .portrait { justify-self:start; width:min(74vw,300px); margin-left:24px; }
+            .band { padding:42px 16px; }
+            .signal-list,.project-grid { grid-template-columns:1fr; }
+            section.content-section { padding:76px 0; }
+            .section-head { display:block; }
+            .section-head p { margin-top:16px; }
+            .contact { padding:34px 24px; }
+            footer { display:block; }
+            footer span { display:block; margin-top:8px; }
         }
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Noto Sans SC", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.7;
-        }
-
-        /* ===== Layout ===== */
-        .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
-
-        /* ===== Header ===== */
-        header {
-            padding: 72px 0 48px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: -200px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 600px;
-            height: 400px;
-            background: radial-gradient(ellipse, rgba(88,166,255,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        .avatar {
-            width: 96px; height: 96px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 36px;
-            color: #fff;
-            box-shadow: 0 4px 24px rgba(88,166,255,0.2);
-            position: relative;
-        }
-        header h1 {
-            font-size: 32px; font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-        header h1 .alias { color: var(--text-secondary); font-weight: 400; }
-        header .tagline {
-            margin-top: 8px;
-            font-size: 16px;
-            color: var(--text-secondary);
-        }
-        header .badge-group {
-            margin-top: 20px;
-            display: flex; gap: 8px; justify-content: center; flex-wrap: wrap;
-        }
-        .badge {
-            display: inline-block;
-            padding: 4px 14px;
-            border-radius: 999px;
-            font-size: 12px;
-            font-weight: 500;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            background: var(--surface);
-        }
-        .badge.python { border-color: #3572A5; color: #58a6ff; }
-        .badge.spring { border-color: #6DB33F; color: #7ee787; }
-        .badge.vue { border-color: #4FC08D; color: #7ee787; }
-        .badge.rag { border-color: #d29922; color: #d29922; }
-        .badge.docker { border-color: #2496ED; color: #58a6ff; }
-        .badge.deepseek { border-color: #bc8cff; color: #bc8cff; }
-
-        /* ===== Section Title ===== */
-        .section-title {
-            font-size: 20px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            display: flex; align-items: center; gap: 10px;
-        }
-        .section-title::after {
-            content: '';
-            flex: 1; height: 1px;
-            background: var(--border);
-        }
-
-        /* ===== About ===== */
-        .about {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 36px 32px;
-            margin-bottom: 32px;
-        }
-        .about p { font-size: 15px; margin-bottom: 12px; color: var(--text-secondary); }
-        .about strong { color: var(--text); }
-        .about .highlight {
-            background: rgba(88,166,255,0.08);
-            padding: 12px 16px;
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--accent);
-            border-left: 3px solid var(--accent);
-            margin-top: 16px;
-        }
-
-        /* ===== Status Row ===== */
-        .status-row {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin-bottom: 32px;
-        }
-        .status-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px;
-            text-align: center;
-            transition: border-color .2s;
-        }
-        .status-card:hover { border-color: var(--accent); }
-        .status-card .emoji { font-size: 28px; margin-bottom: 8px; display: block; }
-        .status-card .label { font-size: 12px; color: var(--text-secondary); }
-        .status-card .value { font-size: 14px; font-weight: 600; margin-top: 4px; }
-        .status-card .value.green { color: var(--accent-green); }
-        .status-card .value.yellow { color: var(--accent-orange); }
-
-        /* ===== Projects ===== */
-        .projects { margin-bottom: 40px; }
-        .project-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 28px 32px;
-            margin-bottom: 16px;
-            transition: border-color .2s;
-        }
-        .project-card:hover { border-color: var(--accent); }
-        .project-card h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 6px;
-        }
-        .project-card .meta {
-            font-size: 13px;
-            color: var(--text-secondary);
-            margin-bottom: 10px;
-        }
-        .project-card p {
-            font-size: 14px;
-            color: var(--text-secondary);
-        }
-        .project-card .status-badge {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 500;
-            margin-top: 10px;
-        }
-        .status-badge.active { background: rgba(63,185,80,0.15); color: var(--accent-green); border: 1px solid rgba(63,185,80,0.3); }
-        .status-badge.wip { background: rgba(210,153,34,0.15); color: var(--accent-orange); border: 1px solid rgba(210,153,34,0.3); }
-        .status-badge.demo { background: rgba(88,166,255,0.15); color: var(--accent); border: 1px solid rgba(88,166,255,0.3); }
-        .tags {
-            display: flex; gap: 6px; flex-wrap: wrap;
-            margin-top: 12px;
-        }
-        .tags span {
-            padding: 2px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-        }
-        .project-card .links {
-            margin-top: 12px;
-            display: flex; gap: 12px;
-        }
-        .project-card .links a {
-            font-size: 13px;
-            color: var(--accent);
-            text-decoration: none;
-        }
-        .project-card .links a:hover { text-decoration: underline; }
-
-        /* ===== Tools (工具集) ===== */
-        .tools { margin: 48px 0; }
-        .tools-grid { display: flex; flex-direction: column; gap: 12px; }
-        .tool-card {
-            display: flex; align-items: center; gap: 16px;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 18px 22px;
-            text-decoration: none;
-            transition: border-color .2s, transform .2s;
-        }
-        .tool-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .tool-card .tool-icon {
-            width: 46px; height: 46px; border-radius: 12px; flex-shrink: 0;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
-            background: linear-gradient(135deg, #3a5a6e, #6b8f71);
-        }
-        .tool-card h3 { font-size: 16px; font-weight: 600; color: var(--text); }
-        .tool-card p { font-size: 13px; color: var(--text-secondary); margin-top: 2px; }
-        .tool-card .tool-go { margin-left: auto; color: var(--accent); font-size: 18px; }
-
-        /* ===== Skills ===== */
-        .skills { margin-bottom: 40px; }
-        .skill-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-            gap: 10px;
-        }
-        .skill-item {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 14px 18px;
-            text-align: center;
-            font-size: 13px;
-            font-weight: 500;
-            transition: border-color .2s;
-        }
-        .skill-item:hover { border-color: var(--accent); }
-        .skill-item .emoji { display: block; font-size: 22px; margin-bottom: 4px; }
-
-        /* ===== Services ===== */
-        .services { margin-bottom: 40px; }
-        .service-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-        }
-        .service-card {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 20px 24px;
-            transition: border-color .2s;
-        }
-        .service-card:hover { border-color: var(--accent); }
-        .service-card h4 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
-        .service-card p { font-size: 13px; color: var(--text-secondary); }
-
-        /* ===== Contact ===== */
-        .contact {
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px;
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .contact p { color: var(--text-secondary); font-size: 14px; margin-bottom: 20px; }
-        .contact-links {
-            display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
-        }
-        .contact-links a {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all .2s;
-        }
-        .contact-links .primary {
-            background: var(--accent);
-            color: #0d1117;
-        }
-        .contact-links .primary:hover { background: #79c0ff; }
-        .contact-links .secondary {
-            border: 1px solid var(--border);
-            color: var(--text);
-        }
-        .contact-links .secondary:hover { background: var(--surface-hover); }
-
-        /* ===== GitHub Stats ===== */
-        .github-stats {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-        .github-stats img { border-radius: var(--radius); max-width: 100%; }
-
-        /* ===== Footer ===== */
-        footer {
-            text-align: center;
-            padding: 24px 0 48px;
-            font-size: 13px;
-            color: var(--text-secondary);
-        }
-
-        /* ===== Responsive ===== */
-        @media (max-width: 600px) {
-            header { padding: 48px 0 32px; }
-            header h1 { font-size: 26px; }
-            .about, .project-card, .contact { padding: 24px 20px; }
-            .skill-grid { grid-template-columns: repeat(2, 1fr); }
-            .service-grid { grid-template-columns: 1fr; }
-            .status-row { grid-template-columns: 1fr; }
+        @media (prefers-reduced-motion:reduce) {
+            html { scroll-behavior:auto; }
+            *,*::before,*::after { transition-duration:.01ms !important; animation-duration:.01ms !important; }
         }
     </style>
 </head>
 <body>
-
-<header>
-    <div class="avatar">🌟</div>
-    <h1>星辰 <span class="alias">· 一人AI工作室</span></h1>
-    <p class="tagline">🚀 NLP出身 · 深耕AI Agent+RAG+知识工程 · 一人公司模式</p>
-    <div class="badge-group">
-        <span class="badge python">🐍 Python</span>
-        <span class="badge">⚡ FastAPI</span>
-        <span class="badge">🧠 LangGraph</span>
-        <span class="badge rag">📚 RAG</span>
-        <span class="badge">🔧 MCP/A2A</span>
-        <span class="badge">🏭 PyTorch</span>
-        <span class="badge docker">🐳 Docker</span>
-        <span class="badge">🕸️ Neo4j</span>
-    </div>
-</header>
-
-<main class="container">
-
-    <!-- About -->
-    <section class="about">
-        <p>
-            你好，我是 <strong>唐文青</strong>（你也可以叫我 <strong>星辰</strong> 🌟）。
-            NLP工程师出身，从模型微调(BERT/ERNIE LoRA)做到RAG知识库系统，
-            再到Multi-Agent协作平台(LangGraph+A2A+MCP)，一路深耕AI工程落地。
-        </p>
-        <p>
-            目前以<strong>一人公司模式</strong>接项目、做产品、写内容。
-            擅长把"技术想法"变成"可交付的系统"——从Agent协作平台、RAG知识库、
-            到模型微调部署，都有完整实战经验。
-        </p>
-        <p>
-            我相信 <strong>"先完成，再完美"</strong>——代码写出来比囤着有用，
-            项目交付比空谈有价值。
-        </p>
-        <div class="highlight">
-            📍 杭州 · 全职独立开发 &nbsp;|&nbsp; 🎯 做可交付的项目，写有价值的内容
-        </div>
-    </section>
-
-    <!-- Status Row -->
-    <div class="status-row">
-        <div class="status-card">
-            <span class="emoji">🧠</span>
-            <div class="label">知识工程</div>
-            <div class="value yellow">KnowledgeForge V3</div>
-        </div>
-        <div class="status-card">
-            <span class="emoji">🍱</span>
-            <div class="label">全栈项目</div>
-            <div class="value green">食堂小程序 95%</div>
-        </div>
-        <div class="status-card">
-            <span class="emoji">⚡</span>
-            <div class="label">自动化流水线</div>
-            <div class="value green">一人公司工具链</div>
-        </div>
-    </div>
-
-    <!-- Projects -->
-    <section class="projects">
-        <h2 class="section-title">📦 置顶项目</h2>
-
-        <div class="project-card">
-            <h3>🧠 AI-Native Agent 平台</h3>
-            <div class="meta">2025.12-2026.03 · LangGraph · A2A协议 · MCP · GLM-4-9B-Chat · LoRA · Redis Streams</div>
-            <p>
-                7-Agent协作系统：Supervisor Agent 调度架构，基于 LangGraph ReAct 实现工具调用链。
-                通过 A2A 协议实现 Agent 间通信（Redis Streams 做消息队列），集成 MCP Server 扩展 Agent 能力。
-                GLM-4-9B-Chat 经 3000+ 条数据 LoRA 微调，准确率从82%提升至96%。
-            </p>
-            <span class="status-badge demo">🟢 可演示</span>
-            <div class="tags">
-                <span>LangGraph</span><span>A2A</span><span>MCP</span>
-                <span>GLM-4</span><span>LoRA</span><span>Redis</span>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <h3>📚 RAG 知识库系统</h3>
-            <div class="meta">2025.07-2025.11 · Whisper · ColPali · Milvus · Neo4j · LangChain · FastAPI</div>
-            <p>
-                365本得到听书PDF打造RAG知识库。语音部分：VAD切割200+片段→Whisper Large-v3转录→Pyannote说话人分离。
-                图文检索：ColPali 解析PDF视觉布局。混合检索：BERT-base(4分类F1=0.92, 15ms) + BM25 + Cross-Encoder重排。
-                HyDE策略：查询→LLM生成假设文档→向量检索，F1从60%提升至85%。Neo4j存储3000+实体关联，Top5命中率91%。
-            </p>
-            <span class="status-badge active">🟢 运行中</span>
-            <div class="tags">
-                <span>Whisper</span><span>ColPali</span><span>Milvus</span>
-                <span>Neo4j</span><span>LangChain</span><span>HyDE</span>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <h3>🧩 Khoj AI 知识中枢</h3>
-            <div class="meta">2026.01-至今 · Khoj · LangGraph · Neo4j · BGE-M3 · Milvus · D3.js</div>
-            <p>
-                AI-native知识管理平台。底层：BGE-M3 Embedding + 自适应Chunking策略(72%→87%) +
-                Milvus向量库。知识层：Neo4j存储3000+实体+5000+关联关系，D3.js交互式图谱可视化。
-                输入层：多路Content Plugin(RSS 3源 + Jina Reader)自动摄入。Agent层：LangGraph编排"AI编辑"Agent，
-                实现自动摘要/分类/关联推荐。
-            </p>
-            <span class="status-badge wip">🟡 迭代中</span>
-            <div class="tags">
-                <span>Khoj</span><span>LangGraph</span><span>Neo4j</span>
-                <span>BGE-M3</span><span>Milvus</span><span>D3.js</span>
-            </div>
-        </div>
-
-        <div class="project-card">
-            <h3>🏭 NLP 情感分类系统</h3>
-            <div class="meta">2025.03-2025.06 · PyTorch · BERT · ERNIE 3.0 · LoRA · ONNX</div>
-            <p>
-                ChnSentiCorp中文情感分类。从 jieba+TF-IDF+SVM(Baseline F1=0.89) 到 PyTorch TextCNN、
-                BiLSTM+Attention，最终以 ERNIE 3.0 + PERT 达到 F1=0.95 SOTA。
-                Qwen-3-8B/DeepSeek-V3 零样本对比实验 + 8GB显存环境下 Qwen-3-0.6B LoRA 微调。
-                生产部署：FastAPI + ONNX Runtime 提供 BERT 推理服务。
-            </p>
-            <span class="status-badge active">🟢 已完成</span>
-            <div class="tags">
-                <span>PyTorch</span><span>BERT</span><span>ERNIE 3.0</span>
-                <span>LoRA</span><span>ONNX</span><span>vLLM</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section class="services">
-        <h2 class="section-title">💼 可以接的项目</h2>
-        <div class="service-grid">
-            <div class="service-card">
-                    <h4>🧠 AI Agent 系统</h4>
-                    <p>Multi-Agent协作平台、MCP Server集成、Function Call工作流、LangGraph编排</p>
-                </div>
-                <div class="service-card">
-                    <h4>📚 RAG 知识库</h4>
-                    <p>文档知识库、混合检索(BM25+向量+重排)、多模态RAG、Neo4j知识图谱</p>
-                </div>
-                <div class="service-card">
-                    <h4>🔧 模型微调与部署</h4>
-                    <p>LLM+LoRA微调、BERT/ERNIE序列任务、ONNX/vLLM生产化部署</p>
-                </div>
-                <div class="service-card">
-                    <h4>🌐 全栈开发 + 运维</h4>
-                    <p>小程序+后台+API、AI应用前后端、Milvus/Neo4j/Redis编排部署</p>
-                </div>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section class="skills">
-        <h2 class="section-title">🔧 技术栈</h2>
-        <div class="skill-grid">
-            <div class="skill-item"><span class="emoji">🧠</span>LangGraph / A2A / MCP</div>
-            <div class="skill-item"><span class="emoji">🐍</span>Python / FastAPI</div>
-            <div class="skill-item"><span class="emoji">📚</span>RAG / LangChain / Milvus</div>
-            <div class="skill-item"><span class="emoji">🕸️</span>Neo4j / 知识图谱</div>
-            <div class="skill-item"><span class="emoji">🏭</span>PyTorch / BERT / ERNIE</div>
-            <div class="skill-item"><span class="emoji">🔧</span>LoRA / QLoRA / 微调</div>
-            <div class="skill-item"><span class="emoji">🎤</span>Whisper / ColPali / 多模态</div>
-            <div class="skill-item"><span class="emoji">🗄️</span>MySQL / PostgreSQL / Redis</div>
-            <div class="skill-item"><span class="emoji">🐳</span>Docker / Docker Compose</div>
-            <div class="skill-item"><span class="emoji">🔌</span>ONNX / vLLM / 部署</div>
-            <div class="skill-item"><span class="emoji">☁️</span>Git / GitHub Actions</div>
-            <div class="skill-item"><span class="emoji">🧰</span>Hermes Agent / Dify</div>
-        </div>
-    </section>
-
-    <!-- Tools (工具集) -->
-    <section class="tools">
-        <h2 class="section-title">🧰 工具集</h2>
-        <div class="tools-grid">
-            <a href="https://tangwenqing123.github.io/gaoshan-liushui/" target="_blank" rel="noopener" class="tool-card">
-                <div class="tool-icon">🏔️</div>
-                <div>
-                    <h3>高山流水 · 遇知音</h3>
-                    <p>金句人格测试 · 选 5 句金句，遇见你灵魂里的知音（12+2 古典人格卡）</p>
-                </div>
-                <span class="tool-go">→</span>
-            </a>
-        </div>
-    </section>
-
-    <!-- GitHub Stats -->
-    <div class="github-stats">
-        <img src="https://github-readme-stats.vercel.app/api?username=tangwenqing123&show_icons=true&theme=dark&hide_border=true&bg_color=0d1117&text_color=8b949e&icon_color=58a6ff&title_color=58a6ff" height="160" alt="GitHub Stats" />
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tangwenqing123&layout=compact&theme=dark&hide_border=true&bg_color=0d1117&text_color=8b949e&title_color=58a6ff" height="160" alt="Top Languages" />
-    </div>
-
-    <!-- Contact -->
-    <section class="contact">
-        <p>有项目想聊？或是想交流AI应用落地？欢迎联系我 👋</p>
-        <div class="contact-links">
-            <a href="https://github.com/tangwenqing123" target="_blank" class="secondary" rel="noopener">
-                🐙 GitHub
-            </a>
-            <a href="https://tangwenqing123.github.io" target="_blank" class="secondary" rel="noopener">
-                🌐 主页
-            </a>
-            <a href="mailto:2571453147@qq.com" class="primary">
-                📧 联系我
-            </a>
-        </div>
-    </section>
-
-</main>
-
-<footer>
-    © 2026 唐文青 · 星辰 &nbsp;·&nbsp; Built with 🌟 &nbsp;·&nbsp; 一人公司 · 持续交付 · 做有积累的事
-</footer>
-
+    <header class="site-header"><div class="wrap nav"><a class="brand" href="#top"><span class="brand-mark">唐</span><span>TANG WENQING</span></a><nav class="nav-links" aria-label="主导航"><a href="#work">项目档案</a><a href="#services">合作方式</a><a href="#contact">联系我</a></nav></div></header>
+    <main id="top"><div class="wrap">
+        <section class="hero"><div><div class="eyebrow mono">Independent AI studio / 2026</div><h1>把复杂的 AI，做成能工作的东西。</h1><p class="hero-copy">我是 <strong>唐文青</strong>，NLP 出身的独立开发者。现在专注于 AI Agent、RAG 与知识工程，也做内容产品和一人公司的工具链。</p><div class="actions"><a class="button primary" href="#work">看代表项目 <span>↘</span></a><a class="button light" href="https://github.com/tangwenqing123" target="_blank" rel="noopener">打开 GitHub <span>↗</span></a></div><p class="orbit-note">杭州 · 全职独立开发 · 接项目 / 做产品 / 写内容</p></div><div class="portrait"><img src="assets/avatar.jpg" alt="个人头像" /><span class="portrait-label">BUILD / SHIP / LEARN</span></div></section>
+    <section class="band" aria-label="工作方向"><div class="band-inner"><h2>不只是在调用模型，<br />而是在搭建系统。</h2><div><p>从模型微调到知识库，从 Agent 协作平台到内容自动化，我关心的是技术如何真正进入工作流，产生可以被使用、被理解、被交付的结果。</p><div class="signal-list"><div class="signal"><span class="mono">01 / build</span><b>工程落地</b><small>把想法变成可运行的产品</small></div><div class="signal"><span class="mono">02 / connect</span><b>知识连接</b><small>让信息变成可检索的资产</small></div><div class="signal"><span class="mono">03 / share</span><b>持续表达</b><small>把实践写成别人看得懂的内容</small></div></div></div></div></section>
+    <section class="content-section" id="work"><div class="section-head"><h2>代表项目</h2><p>不是仓库清单，而是我最近真正投入时间、可以继续展开的几件事。</p></div><div class="project-grid">
+            <a class="project" href="https://github.com/tangwenqing123/virtual-ai-tutor" target="_blank" rel="noopener"><img class="project-cover" src="https://opengraph.githubassets.com/1/tangwenqing123/virtual-ai-tutor" alt="Virtual AI Tutor 项目封面" loading="lazy" onerror="this.onerror=null;this.src='https://github.com/tangwenqing123.png?size=720'" /><div class="project-body"><span class="project-kicker mono">AI product / Python</span><h3>Virtual AI Tutor</h3><p>基于 LangGraph 与 DeepSeek 的个性化 AI 教学助手，把多轮对话和学习路径组织成真正可用的产品体验。</p><div class="project-foot"><span>ACTIVE · 2026</span><span>↗</span></div></div></a>
+            <a class="project" href="https://github.com/tangwenqing123/gaoshan-liushui" target="_blank" rel="noopener"><img class="project-cover" src="https://opengraph.githubassets.com/1/tangwenqing123/gaoshan-liushui" alt="高山流水项目封面" loading="lazy" onerror="this.onerror=null;this.src='https://github.com/tangwenqing123.png?size=720'" /><div class="project-body"><span class="project-kicker mono">Interactive / JavaScript</span><h3>高山流水 · 遇知音</h3><p>选 5 句金句，遇见你灵魂里的知音。一个把内容、人格测试和东方审美放在一起的可交互产品。</p><div class="project-foot"><span>LIVE DEMO · 12 + 2 CARDS</span><span>↗</span></div></div></a>
+            <a class="project" href="https://github.com/tangwenqing123/personal-agent-system" target="_blank" rel="noopener"><img class="project-cover" src="https://opengraph.githubassets.com/1/tangwenqing123/personal-agent-system" alt="Personal Agent System 项目封面" loading="lazy" onerror="this.onerror=null;this.src='https://github.com/tangwenqing123.png?size=720'" /><div class="project-body"><span class="project-kicker mono">Knowledge system / Python</span><h3>Personal Agent System</h3><p>围绕知识管理、内容生成和学习追踪构建的一人公司工作台，持续记录从输入到交付的完整链路。</p><div class="project-foot"><span>WORK IN PROGRESS</span><span>↗</span></div></div></a>
+            <a class="project" href="https://github.com/tangwenqing123/spiral-bkt-engine" target="_blank" rel="noopener"><img class="project-cover" src="https://opengraph.githubassets.com/1/tangwenqing123/spiral-bkt-engine" alt="Spiral BKT Engine 项目封面" loading="lazy" onerror="this.onerror=null;this.src='https://github.com/tangwenqing123.png?size=720'" /><div class="project-body"><span class="project-kicker mono">Research / Multi-agent</span><h3>Spiral BKT Engine</h3><p>结合 Bayesian Knowledge Tracing、多 Agent 架构与 MCP 的 tutoring engine，探索更可解释的学习反馈。</p><div class="project-foot"><span>EXPERIMENTAL</span><span>↗</span></div></div></a>
+    </div></section>
+    <section class="content-section" id="services"><div class="service-layout"><div><div class="eyebrow mono">What I can build</div><h2>如果你有一个想法，先聊它怎么落地。</h2><p class="service-intro">我更适合处理需要把模糊需求拆清楚、把模型能力接进真实业务、最后交付成一个能运行系统的项目。</p></div><div class="service-list"><div class="service-item"><span class="num">01</span><div><h3>AI Agent 系统</h3><p>Multi-Agent 协作、LangGraph 编排、MCP Server 集成与工具调用工作流。</p></div></div><div class="service-item"><span class="num">02</span><div><h3>RAG 知识库</h3><p>文档摄入、混合检索、重排、多模态 RAG 与 Neo4j 知识图谱。</p></div></div><div class="service-item"><span class="num">03</span><div><h3>模型微调与部署</h3><p>LLM LoRA 微调、BERT/ERNIE 序列任务、ONNX 与 vLLM 生产化部署。</p></div></div><div class="service-item"><span class="num">04</span><div><h3>一人公司工具链</h3><p>内容生产、知识管理、自动化流程和个人品牌产品的全栈实现。</p></div></div></div></div></section>
+    <section class="contact" id="contact"><div><h2>有一个值得做的东西？</h2><p>把需求、草图或一句还没想清楚的话发给我。我们先判断它是否值得做，再决定怎么做。</p></div><div class="actions"><a class="button" href="mailto:2571453147@qq.com">发邮件 ↗</a><a class="button" href="https://github.com/tangwenqing123" target="_blank" rel="noopener">GitHub ↗</a></div></section>
+    </div></main>
+    <div class="wrap"><footer><span>© 2026 唐文青 / 星辰一人 AI 工作室</span><span class="mono">Built with curiosity · shipped with care</span></footer></div>
 </body>
 </html>
